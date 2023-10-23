@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cart-layer {
+    display: none;
+}
+.displaying_cart .cart-layer {
+    display: block;
+}
