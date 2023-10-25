@@ -11,6 +11,7 @@ async function main() {
             container: document.querySelector("#products"),
             decreaseClick,
             increaseClick,
+            
         });
 
     const {
@@ -23,27 +24,24 @@ async function main() {
         increaseClick,
     });
 
-    const { increase, decrease, getTotalCount } = setupCounter();
+        const { increase, decrease, getTotalCount, getCountByProductId } = setupCounter();
 
     const updateTotalCount = (totalCount) => {
         document.querySelector(".total-count").innerHTML = `(${totalCount})`;
     };
 
     function increaseClick({productId}) {
-        const count = increase({ productId });
-        updateProductCount({ productId, count });
-        if (count === 1) {
+       
+        if (getCountByProductId({productId}) === 0) {
             addProductToCart({ product: getProductById({ productId }) });
         }
-        updateCartCount({ productId, count });
+        increase({ productId });
         updateTotalCount(getTotalCount());
     };
 
     // 호이스트 개념! function과 화살표함수 차이
    function decreaseClick({productId}) {
         const count = decrease({ productId });
-        updateProductCount({ productId, count });
-        updateCartCount({ productId, count });
         if (count === 0) {
             removeProductFromCart({ product: getProductById({ productId }) });
         }

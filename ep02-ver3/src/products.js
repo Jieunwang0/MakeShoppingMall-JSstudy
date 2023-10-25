@@ -1,19 +1,20 @@
 import test from "./test.json";
 import { findElement } from "./utils";
 
-export function getProductElement(product, count = 0) {
+export function getProductElement(product) {
     const element = document.createElement("div");
     element.classList.add("product");
     element.setAttribute("data-product-id", product.id);
     element.innerHTML = `
     <img src="${product.images[0]}" alt="Image of ${product.name}" />
   <p>${product.name}</p>
-  <div class="flex items-center justify-between"><span>Price: ${
-      product.regularPrice
-  }</span>
+  <div class="flex items-center justify-between"><span>Price: ${product.regularPrice}</span>
   <div>
   <button type="button" class="btn-decrease  bg-green-200 hover:bg-green-300 text-green-800 py-1 px-3 rounded-full">-</button>
-  <span class="cart-count text-green-800">${count === 0 ? "" : count}</span>
+  <span 
+    class="cart-count text-green-800" 
+    data-subscribe-to="countMap" data-subscription-path="${product.id}"
+    ></span>
   <button type="button" class="btn-increase bg-green-200 hover:bg-green-300 text-green-800 py-1 px-3 rounded-full">+</button>
 </div>
   </div>
@@ -36,6 +37,7 @@ export async function setupProducts({
     container,
     decreaseClick,
     increaseClick,
+  
 }) {
     const products = await getProducts();
     const productMap = {};
@@ -58,9 +60,9 @@ export async function setupProducts({
             targetElement.matches(".btn-increase")
         ) {
             if (targetElement.matches(".btn-decrease")) {
-                decreaseClick({productId});
+                decreaseClick({ productId });
             } else if (targetElement.matches(".btn-increase")) {
-                increaseClick({productId});
+                increaseClick({ productId });
             }
         }
     });
