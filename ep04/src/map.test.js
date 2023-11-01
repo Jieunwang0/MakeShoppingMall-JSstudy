@@ -4,14 +4,14 @@ describe('map method', () => {
   it('squares the elements', () => {
     const numbers = [1, 2, 3, 4, 5];
     // TODO: do something here
-    const squares = [];
+    const squares = numbers.map((number) => number * number);
     expect(squares).toEqual([1, 4, 9, 16, 25]);
   });
 
   it('makes strings uppercase', () => {
     const words = ['hello', 'world'];
     // TODO: do something here
-    const uppercasedWords = [];
+    const uppercasedWords = words.map(word => word.toUpperCase());
     expect(uppercasedWords).toEqual(['HELLO', 'WORLD']);
   });
 
@@ -31,7 +31,7 @@ describe('map method', () => {
       },
     ];
     // TODO: do something here
-    const userIds = [];
+    const userIds = users.map(user => user.id);
     expect(userIds).toEqual([1, 2, 3]);
   });
 
@@ -49,7 +49,12 @@ describe('map method', () => {
       },
     ];
     // TODO: do something here
-    const titlesAndYears = [];
+    const titlesAndYears = movies.map(({title, year})=> {
+     return {
+      title,
+      year
+    }
+    })
     expect(titlesAndYears).toEqual([
       {
         title: 'Rent',
@@ -77,7 +82,14 @@ describe('map method', () => {
     ];
 
     // TODO: do something here
-    const movies2 = [];
+    const movies2 = movies.map((movie) => {
+      return {
+        title: movie.title,
+        year: movie.year,
+        genres: movie.genres,
+        genre: movie.genres.join(" / "),
+      }
+    })
     expect(movies2).toEqual([
       {
         title: 'Rent',
