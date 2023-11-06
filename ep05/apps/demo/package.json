@@ -1,0 +1,12 @@
+{
+    "name": "demo",
+    "version": "0.0.1",
+    "type": "module",
+    "scripts": {
+        "dev": "node index.js",
+        "test": "echo test"
+    },
+    "dependencies": {
+        "elmath2": "^0.0.4"
+    }
+}

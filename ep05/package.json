@@ -1,0 +1,8 @@
+{
+    "name": "elemath2",
+    "private": true,
+    "workspaces": [
+        "library",
+        "apps/*"
+    ]
+}
