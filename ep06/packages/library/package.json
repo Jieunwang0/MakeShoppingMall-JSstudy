@@ -4,14 +4,14 @@
     "type": "module",
     "private": true,
     "files": [
-        "src",
         "dist"
     ],
-    "types": "./src/main.d.ts",
-    "module": "./src/main.js",
+    "main": "./dist/mini-query.umd.cjs",
+    "module": "./dist/mini-query.js",
     "exports": {
         ".": {
-            "import": "./src/main.js"
+            "import": "./dist/mini-query.js",
+            "require": "./dist/mini-query.umd.cjs"
         }
     },
     "scripts": {
