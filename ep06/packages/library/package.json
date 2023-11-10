@@ -1,0 +1,29 @@
+{
+    "name": "@eunjae-lee/mini-query",
+    "version": "0.0.1",
+    "type": "module",
+    "private": true,
+    "files": [
+        "src",
+        "dist"
+    ],
+    "types": "./src/main.d.ts",
+    "module": "./src/main.js",
+    "exports": {
+        ".": {
+            "import": "./src/main.js"
+        }
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "test": "vitest"
+    },
+    "devDependencies": {
+        "jsdom": "^22.1.0",
+        "typescript": "^5.0.2",
+        "vite": "^4.4.5",
+        "vitest": "^0.34.6"
+    }
+}

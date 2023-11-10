@@ -1,0 +1,18 @@
+{
+    "name": "mini-query",
+    "version": "0.0.1",
+    "description": "",
+    "private": true,
+    "main": "index.js",
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ],
+    "scripts": {
+        "example": "yarn workspace example dev",
+        "build": "yarn workspace @eunjae-lee/mini-query build",
+        "test": "yarn workspace @eunjae-lee/mini-query test"
+    },
+    "author": "Jieun Wang",
+    "license": "MIT"
+}
