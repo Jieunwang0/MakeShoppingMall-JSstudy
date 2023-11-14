@@ -1,6 +1,12 @@
-import { start} from './src/router'
-import { routes } from './src/routes';
+import { start } from "./src/router";
+import { routes, getInitialHTML } from "./src/routes";
 
-start({
-  routes,
-});
+export { getInitialHTML };
+
+if (typeof window !== "undefined") {
+  console.log('starting client-side routing..')
+  console.log('initial data', window.__INITIAL_DATA__)
+    start({
+        routes,
+    });
+}

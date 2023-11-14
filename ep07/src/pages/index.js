@@ -1,8 +1,7 @@
 import { goto } from "../router";
 
-export function renderIndex() {
-    document.querySelector("#app").innerHTML = `
-
+export function getInitialHTML() {
+  return `
   <h1>Movie Info</h1>
   <form>
   <input type='search' name='query' />
@@ -10,6 +9,9 @@ export function renderIndex() {
   </form>
 
   `;
+}
+export function renderIndex({searchParams, initialData}) {
+    document.querySelector("#app").innerHTML = getInitialHTML();
 
     document.body.querySelector("form").addEventListener("submit", (e) => {
         e.preventDefault();
