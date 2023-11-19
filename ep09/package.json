@@ -1,0 +1,20 @@
+{
+  "name": "ep09",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "static-server pages",
+    "build": "rm -rf dist && node ./scripts/build.js",
+    "serve": "static-server dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jieun Wang",
+  "license": "MIT",
+  "devDependencies": {
+    "fs-extra": "^11.1.1",
+    "mustache": "^4.2.0",
+    "static-server": "^2.2.1"
+  }
+}
