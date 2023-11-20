@@ -4,6 +4,7 @@ export default {
         pages: "pages",
         dist: "dist",
         contentsSlug: 'post',
+        assets: 'assets'
     },
     site: {title: 'ITS My Blog!!!!!!', author: 'Jieun Wang'},
     updatePost(post) {
