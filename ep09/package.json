@@ -13,8 +13,10 @@
   "author": "Jieun Wang",
   "license": "MIT",
   "devDependencies": {
+    "front-matter": "^4.0.2",
     "fs-extra": "^11.1.1",
     "mustache": "^4.2.0",
+    "showdown": "^2.1.0",
     "static-server": "^2.2.1"
   }
 }
