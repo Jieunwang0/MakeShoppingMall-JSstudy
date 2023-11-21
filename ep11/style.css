@@ -94,3 +94,19 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.error {
+  color: red;
+}
+
+.submit-btn-submitting{
+  display: none;
+}
+
+form[data-submitting="true"] .submit-btn-submitting{
+  display: inline;
+}
+
+form[data-submitting="true"] .submit-btn-submit{
+  display: none;
+}

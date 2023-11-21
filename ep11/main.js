@@ -1,24 +1,74 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import { z } from "zod";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const emailSchema = z.string().email();
+const passwordSchema = z.string().min(12);
 
-setupCounter(document.querySelector('#counter'))
+// user-side
+setupform({
+    form: document.querySelector("#login-form"),
+    fields: {
+        email: emailSchema,
+        password: passwordSchema,
+    },
+    onError() {},
+    async onSubmit(data) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log("onSubmit - user side", data);
+                resolve();
+            }, 3000);
+        });
+    },
+});
+
+//library-side
+function setupform({ form, fields, onError, onSubmit }) {
+    let isSubmitting = false;
+
+    //     const submitButton = form.querySelector("button[type='submit']");
+    // if(!submitButton){
+    //   console.error('submit button is missing')
+    // }
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        if (isSubmitting) {
+            return;
+        }
+
+        isSubmitting = true;
+        form.setAttribute("data-submitting", true);
+        const data = {};
+        const errors = {};
+        let valid = true;
+        Object.keys(fields).forEach((key) => {
+            const value = form[key].value;
+            const schema = fields[key];
+            const result = schema.safeParse(value);
+            const errorElement = form.querySelector(`#${key}-error`);
+            if (result.success) {
+                if (errorElement) {
+                    errorElement.innerHTML = "";
+                }
+            } else {
+                valid = false;
+                errors[key] = result.error;
+               if (onError) {
+                   onError({ key, value, result });
+               } else if (errorElement) {
+                   errorElement.innerHTML = result.error.issues[0].message;
+               }
+            }
+            data[key] = value;
+        });
+        if (valid) {
+            console.log("start submitting");
+            await onSubmit(data);
+            console.log("submitting finished");
+        } else {
+            console.log("errors", errors);
+        }
+        isSubmitting = false;
+        form.setAttribute("data-submitting", false);
+    });
+}
